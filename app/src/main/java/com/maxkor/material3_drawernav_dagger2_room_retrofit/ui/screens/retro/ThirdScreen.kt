@@ -1,4 +1,4 @@
-package com.maxkor.material3_drawernav_dagger2_room_retrofit.ui.screens
+package com.maxkor.material3_drawernav_dagger2_room_retrofit.ui.screens.retro
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -25,12 +25,11 @@ fun ThirdScreen(coinInfo: CoinInfo) {
             .fillMaxSize()
             .background(Color.DarkGray)
     ) {
-        Column {
+        Column(modifier = Modifier.padding(12.dp)) {
             Text(
                 text = "Third screen",
                 fontSize = 26.sp,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(12.dp),
                 color = Color.White
             )
 
@@ -38,25 +37,25 @@ fun ThirdScreen(coinInfo: CoinInfo) {
 
                 Text(
                     text = coinInfo.time.updated,
-                    fontSize = 26.sp,
+                    fontSize = 20.sp,
                     color = Color.White
                 )
 
                 Text(
                     text = coinInfo.currency,
-                    fontSize = 26.sp,
+                    fontSize = 24.sp,
                     color = Color.White
                 )
 
                 Text(
                     text = coinInfo.info.usd.name,
-                    fontSize = 26.sp,
+                    fontSize = 24.sp,
                     color = Color.White
                 )
 
                 Text(
                     text = coinInfo.info.usd.value.roundToInt().toString(),
-                    fontSize = 26.sp,
+                    fontSize = 24.sp,
                     color = Color.White
                 )
             }

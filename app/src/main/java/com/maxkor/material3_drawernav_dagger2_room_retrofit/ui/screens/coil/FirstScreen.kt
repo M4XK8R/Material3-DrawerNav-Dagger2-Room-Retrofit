@@ -1,4 +1,4 @@
-package com.maxkor.material3_drawernav_dagger2_room_retrofit.ui.screens
+package com.maxkor.material3_drawernav_dagger2_room_retrofit.ui.screens.coil
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -14,6 +14,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+
+private const val IMAGE_URL = "https://random.imagecdn.app/500/750"
 
 @Composable
 fun FirstScreen() {
@@ -32,10 +34,9 @@ fun FirstScreen() {
             )
 
             AsyncImage(
-                model = "https://random.imagecdn.app/500/750",
+                model = IMAGE_URL,
                 contentDescription = null,
             )
         }
-
     }
 }
