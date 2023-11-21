@@ -1,8 +1,8 @@
-package com.maxkor.material3_drawernav_dagger2_room_retrofit.ui.screens
+package com.maxkor.material3_drawernav_dagger2_room_retrofit.ui.screens.room
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -17,7 +17,7 @@ import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -31,12 +31,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.maxkor.material3_drawernav_dagger2_room_retrofit.R
-import com.maxkor.material3_drawernav_dagger2_room_retrofit.data.room.MyDao
 import com.maxkor.material3_drawernav_dagger2_room_retrofit.data.room.MyEntity
+import com.maxkor.material3_drawernav_dagger2_room_retrofit.domain.usecases.DeleteFromDbUseCase
+import com.maxkor.material3_drawernav_dagger2_room_retrofit.domain.usecases.InsertToDbUseCase
 import kotlinx.coroutines.launch
 
 @Composable
-fun SecondScreen(dao: MyDao) {
+fun SecondScreen(
+    itemsState: State<List<MyEntity>>,
+    insertToDbUseCase: InsertToDbUseCase,
+    deleteFromDbUseCase: DeleteFromDbUseCase
+) {
+
+    val coroutine = rememberCoroutineScope()
+
     Box(
         Modifier
             .fillMaxSize()
@@ -62,12 +70,10 @@ fun SecondScreen(dao: MyDao) {
                 onValueChange = { textState = it }
             )
 
-            val itemsState = dao.getAll().collectAsState(emptyList())
-            Log.d("TAG", "itemsState = ${itemsState.value}")
             LazyColumn(
                 modifier = Modifier.fillMaxSize()
             ) {
-                items(itemsState.value.asReversed()){
+                items(itemsState.value.asReversed()) {
                     ListItem(
                         headlineContent = {
                             Text(
@@ -76,17 +82,21 @@ fun SecondScreen(dao: MyDao) {
                                 fontWeight = FontWeight.Bold,
                                 modifier = Modifier.padding(12.dp)
                             )
+                        },
+                        modifier = Modifier.clickable {
+                            coroutine.launch {
+                                deleteFromDbUseCase(it)
+                            }
                         }
                     )
                 }
             }
         }
 
-        val coroutine = rememberCoroutineScope()
         FloatingActionButton(
             onClick = {
                 coroutine.launch {
-                    dao.insert(MyEntity(textState))
+                    insertToDbUseCase(MyEntity(textState))
                 }
             },
             modifier = Modifier
@@ -95,10 +105,11 @@ fun SecondScreen(dao: MyDao) {
             shape = CircleShape
         ) {
             Image(
-                painter = painterResource(id = R.drawable.baseline_add_circle_outline_64),
+                painter = painterResource(
+                    id = R.drawable.baseline_add_circle_outline_64
+                ),
                 contentDescription = null,
             )
         }
-
     }
 }
