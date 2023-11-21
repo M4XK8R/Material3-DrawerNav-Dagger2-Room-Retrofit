@@ -14,7 +14,7 @@ fun MyNavGraph(
 ) {
     NavHost(
         navController = navHostController,
-        startDestination = Screen.Face.route
+        startDestination = Screen.Favorite.route
     ) {
         composable(Screen.Favorite.route) {
             favoriteScreenContent()
