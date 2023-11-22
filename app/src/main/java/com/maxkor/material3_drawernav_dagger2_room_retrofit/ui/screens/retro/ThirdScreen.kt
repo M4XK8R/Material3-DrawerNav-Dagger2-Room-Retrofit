@@ -20,6 +20,7 @@ import kotlin.math.roundToInt
 @Composable
 fun ThirdScreen(coinInfo: CoinInfo) {
 
+
     Box(
         Modifier
             .fillMaxSize()

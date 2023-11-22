@@ -11,17 +11,17 @@ sealed class MyNavigationItem(
     val screen: Screen
 ) {
 
-    object Favorite : MyNavigationItem(
+    data object Favorite : MyNavigationItem(
         icon = Icons.Filled.Favorite,
         screen = Screen.Favorite
     )
 
-    object Face : MyNavigationItem(
+    data object Face : MyNavigationItem(
         icon = Icons.Filled.Face,
         screen = Screen.Face
     )
 
-    object Email : MyNavigationItem(
+    data object Email : MyNavigationItem(
         icon = Icons.Filled.Email,
         screen = Screen.Email
     )

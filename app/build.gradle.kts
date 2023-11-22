@@ -52,6 +52,10 @@ android {
 
 dependencies {
 
+    // Dagger2 : Dagger 2.48.1
+    implementation ("com.google.dagger:dagger:2.48.1")
+    ksp ("com.google.dagger:dagger-compiler:2.48.1")
+
     // Moshi
     implementation("com.squareup.moshi:moshi-kotlin:1.14.0")
     // Retrofit
