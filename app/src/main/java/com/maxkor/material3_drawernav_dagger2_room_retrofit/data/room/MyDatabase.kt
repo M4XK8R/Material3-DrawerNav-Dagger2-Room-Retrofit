@@ -5,31 +5,31 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(version = 1, entities = [MyEntity::class])
+@Database(version = 1, entities = [MyEntity::class], exportSchema = false)
 abstract class MyDatabase : RoomDatabase() {
 
     abstract fun dao(): MyDao
 
-    companion object {
-
-        private const val DATABASE_NAME = "db"
-
-        @Volatile
-        private var instance: MyDatabase? = null
-
-        fun getInstance(context: Context): MyDatabase {
-            instance?.let { return it }
-            synchronized(this) {
-                val db = Room.databaseBuilder(
-                    context,
-                    MyDatabase::class.java,
-                    DATABASE_NAME
-                ).build()
-                instance = db
-                return db
-            }
-        }
-    }
+//    companion object {
+//
+//        private const val DATABASE_NAME = "db"
+//
+//        @Volatile
+//        private var instance: MyDatabase? = null
+//
+//        fun getInstance(context: Context): MyDatabase {
+//            instance?.let { return it }
+//            synchronized(this) {
+//                val db = Room.databaseBuilder(
+//                    context,
+//                    MyDatabase::class.java,
+//                    DATABASE_NAME
+//                ).build()
+//                instance = db
+//                return db
+//            }
+//        }
+//    }
 }
 
 
