@@ -52,6 +52,10 @@ android {
 
 dependencies {
 
+    // Coroutines
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    implementation( "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
     // Dagger2 : Dagger 2.48.1
     implementation ("com.google.dagger:dagger:2.48.1")
     ksp ("com.google.dagger:dagger-compiler:2.48.1")
@@ -61,6 +65,8 @@ dependencies {
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
+    // Retrofit adapter for returning Kotlin Flows
+//    implementation ("com.jakewharton.retrofit:retrofit2-kotlinx-coroutines-adapter:0.9.2")
 
     // Room
     val room_version = "2.6.0"

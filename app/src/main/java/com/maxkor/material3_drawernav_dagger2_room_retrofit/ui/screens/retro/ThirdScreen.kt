@@ -14,12 +14,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.maxkor.material3_drawernav_dagger2_room_retrofit.data.retrofit.CoinInfo
+import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlin.math.roundToInt
 
 @Composable
-fun ThirdScreen(coinInfo: CoinInfo) {
+fun ThirdScreen() {
 
+    val viewModel: ThirdViewModel = viewModel()
+
+    val coinInfo = viewModel.coinInfo
 
     Box(
         Modifier
@@ -36,29 +39,29 @@ fun ThirdScreen(coinInfo: CoinInfo) {
 
             Spacer(modifier = Modifier.size(100.dp))
 
-                Text(
-                    text = coinInfo.time.updated,
-                    fontSize = 20.sp,
-                    color = Color.White
-                )
+            Text(
+                text = coinInfo.value.time.updated,
+                fontSize = 20.sp,
+                color = Color.White
+            )
 
-                Text(
-                    text = coinInfo.currency,
-                    fontSize = 24.sp,
-                    color = Color.White
-                )
+            Text(
+                text = coinInfo.value.currency,
+                fontSize = 24.sp,
+                color = Color.White
+            )
 
-                Text(
-                    text = coinInfo.info.usd.name,
-                    fontSize = 24.sp,
-                    color = Color.White
-                )
+            Text(
+                text = coinInfo.value.info.usd.name,
+                fontSize = 24.sp,
+                color = Color.White
+            )
 
-                Text(
-                    text = coinInfo.info.usd.value.roundToInt().toString(),
-                    fontSize = 24.sp,
-                    color = Color.White
-                )
-            }
+            Text(
+                text = coinInfo.value.info.usd.value.roundToInt().toString(),
+                fontSize = 24.sp,
+                color = Color.White
+            )
         }
     }
+}
