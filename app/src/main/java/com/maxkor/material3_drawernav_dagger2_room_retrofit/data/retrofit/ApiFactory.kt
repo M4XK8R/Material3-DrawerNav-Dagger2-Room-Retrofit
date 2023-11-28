@@ -5,6 +5,7 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import javax.inject.Inject
 
 
 private const val BASE_URL = "https://api.coindesk.com/v1/"
@@ -21,6 +22,6 @@ object ApiFactory {
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
 
-    val apiService = retrofit.create(ApiService::class.java)
+    val apiService: ApiService = retrofit.create(ApiService::class.java)
 
 }

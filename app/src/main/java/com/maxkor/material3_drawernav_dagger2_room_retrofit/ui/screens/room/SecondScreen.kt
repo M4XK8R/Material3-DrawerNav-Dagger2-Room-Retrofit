@@ -17,7 +17,7 @@ import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -30,18 +30,18 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.maxkor.material3_drawernav_dagger2_room_retrofit.R
 import com.maxkor.material3_drawernav_dagger2_room_retrofit.data.room.MyEntity
-import com.maxkor.material3_drawernav_dagger2_room_retrofit.domain.usecases.DeleteFromDbUseCase
-import com.maxkor.material3_drawernav_dagger2_room_retrofit.domain.usecases.InsertToDbUseCase
 import kotlinx.coroutines.launch
 
 @Composable
-fun SecondScreen(
-    itemsState: State<List<MyEntity>>,
-    insertToDbUseCase: InsertToDbUseCase,
-    deleteFromDbUseCase: DeleteFromDbUseCase
-) {
+fun SecondScreen() {
+    val viewModel: SecondViewModel = viewModel()
+
+    val itemsState = viewModel
+        .getAllItems()
+        .collectAsState(initial = emptyList())
 
     val coroutine = rememberCoroutineScope()
 
@@ -85,7 +85,7 @@ fun SecondScreen(
                         },
                         modifier = Modifier.clickable {
                             coroutine.launch {
-                                deleteFromDbUseCase(it)
+                                viewModel.deleteFromDb(it)
                             }
                         }
                     )
@@ -96,7 +96,7 @@ fun SecondScreen(
         FloatingActionButton(
             onClick = {
                 coroutine.launch {
-                    insertToDbUseCase(MyEntity(textState))
+                    viewModel.insertToDb(MyEntity(textState))
                 }
             },
             modifier = Modifier
