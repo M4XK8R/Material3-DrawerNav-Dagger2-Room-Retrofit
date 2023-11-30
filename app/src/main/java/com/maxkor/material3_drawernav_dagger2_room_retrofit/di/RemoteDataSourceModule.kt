@@ -22,5 +22,6 @@ interface RemoteDataSourceModule {
         fun provideApiServiceRealization(): ApiService {
             return ApiFactory.apiService
         }
+
     }
 }

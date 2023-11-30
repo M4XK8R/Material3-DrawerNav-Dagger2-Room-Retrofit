@@ -6,9 +6,7 @@ import com.maxkor.material3_drawernav_dagger2_room_retrofit.di.DaggerApplication
 
 class App : Application() {
 
-    val diComponent: ApplicationGraph by lazy {
-        DaggerApplicationGraph
+    val diComponent: ApplicationGraph = DaggerApplicationGraph
             .factory()
             .create(this)
-    }
 }
