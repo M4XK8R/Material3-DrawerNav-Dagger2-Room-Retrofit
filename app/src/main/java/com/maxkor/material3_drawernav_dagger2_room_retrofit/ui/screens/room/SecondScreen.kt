@@ -22,6 +22,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -54,8 +55,8 @@ fun SecondScreen(viewModelFactory: MyViewModelFactory) {
             .padding(8.dp),
         contentAlignment = Alignment.TopCenter
     ) {
-        var textState by remember {
-            mutableStateOf("")
+        var textState by rememberSaveable {
+            mutableStateOf("test")
         }
         Column {
             Text(
