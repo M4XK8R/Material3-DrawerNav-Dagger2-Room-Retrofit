@@ -1,8 +1,6 @@
 package com.maxkor.material3_drawernav_dagger2_room_retrofit.ui.screens
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import com.maxkor.material3_drawernav_dagger2_room_retrofit.navigation.MyNavGraph
 import com.maxkor.material3_drawernav_dagger2_room_retrofit.navigation.MyNavigationItem
 import com.maxkor.material3_drawernav_dagger2_room_retrofit.navigation.NavigationHelper
@@ -22,10 +20,6 @@ fun MainScreen(viewModelFactory: MyViewModelFactory) {
         MyNavigationItem.Email,
     )
 
-    val selectedItem = remember {
-        mutableStateOf(items[0])
-    }
-
     MyDrawer(
         contentNav = {
             MyNavGraph(
@@ -37,6 +31,5 @@ fun MainScreen(viewModelFactory: MyViewModelFactory) {
         },
         navHelper = navHelper,
         items = items,
-        selectedItem = selectedItem
     )
 }
