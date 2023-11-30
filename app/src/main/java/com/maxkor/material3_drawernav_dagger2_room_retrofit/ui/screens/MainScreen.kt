@@ -6,12 +6,13 @@ import androidx.compose.runtime.remember
 import com.maxkor.material3_drawernav_dagger2_room_retrofit.navigation.MyNavGraph
 import com.maxkor.material3_drawernav_dagger2_room_retrofit.navigation.MyNavigationItem
 import com.maxkor.material3_drawernav_dagger2_room_retrofit.navigation.NavigationHelper
+import com.maxkor.material3_drawernav_dagger2_room_retrofit.ui.MyViewModelFactory
 import com.maxkor.material3_drawernav_dagger2_room_retrofit.ui.screens.coil.FirstScreen
 import com.maxkor.material3_drawernav_dagger2_room_retrofit.ui.screens.retro.ThirdScreen
 import com.maxkor.material3_drawernav_dagger2_room_retrofit.ui.screens.room.SecondScreen
 
 @Composable
-fun MainScreen() {
+fun MainScreen(viewModelFactory: MyViewModelFactory) {
 
     val navHelper = NavigationHelper.rememberNavigationState()
 
@@ -30,8 +31,8 @@ fun MainScreen() {
             MyNavGraph(
                 navHostController = navHelper.navHostController,
                 favoriteScreenContent = { FirstScreen() },
-                faceScreenContent = { SecondScreen() },
-                emailScreenContent = { ThirdScreen() }
+                faceScreenContent = { SecondScreen(viewModelFactory) },
+                emailScreenContent = { ThirdScreen(viewModelFactory) }
             )
         },
         navHelper = navHelper,

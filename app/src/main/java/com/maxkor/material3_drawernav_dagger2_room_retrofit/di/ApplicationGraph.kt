@@ -2,8 +2,6 @@ package com.maxkor.material3_drawernav_dagger2_room_retrofit.di
 
 import android.content.Context
 import com.maxkor.material3_drawernav_dagger2_room_retrofit.MainActivity
-import com.maxkor.material3_drawernav_dagger2_room_retrofit.ui.screens.retro.ThirdViewModel
-import com.maxkor.material3_drawernav_dagger2_room_retrofit.ui.screens.room.SecondViewModel
 import dagger.BindsInstance
 import dagger.Component
 
@@ -11,16 +9,13 @@ import dagger.Component
 @Component(
     modules = [
         DatabaseModule::class,
-        RemoteDataSourceModule::class
+        RemoteDataSourceModule::class,
+        ViewModelModule::class
     ]
 )
 interface ApplicationGraph {
 
     fun inject(mainActivity: MainActivity)
-
-    fun inject(secondViewModel: SecondViewModel)
-
-    fun inject(thirdViewModel: ThirdViewModel)
 
     @Component.Factory
     interface ComponentFactory {

@@ -1,31 +1,19 @@
 package com.maxkor.material3_drawernav_dagger2_room_retrofit.ui.screens.retro
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.maxkor.material3_drawernav_dagger2_room_retrofit.App
 import com.maxkor.material3_drawernav_dagger2_room_retrofit.data.retrofit.ApiHelper
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class ThirdViewModel(
-    application: Application
-) : AndroidViewModel(application) {
-
-    private val component by lazy {
-        (application as App).diComponent
-    }
+class ThirdViewModel @Inject constructor(
+    private val apiHelper: ApiHelper
+) : ViewModel() {
 
     init {
-        component.inject(this)
-        if (::apiHelper.isInitialized) {
-            loadCoinInfo()
-        }
+        loadCoinInfo()
     }
-
-    @Inject
-    lateinit var apiHelper: ApiHelper
 
     val coinInfo = apiHelper.coinInfo
 
@@ -37,6 +25,7 @@ class ThirdViewModel(
     }
 
 }
+
 
 // Flow tests functions
 

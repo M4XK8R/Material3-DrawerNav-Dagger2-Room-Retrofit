@@ -15,12 +15,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.maxkor.material3_drawernav_dagger2_room_retrofit.ui.MyViewModelFactory
 import kotlin.math.roundToInt
 
 @Composable
-fun ThirdScreen() {
+fun ThirdScreen(viewModelFactory: MyViewModelFactory) {
 
-    val viewModel: ThirdViewModel = viewModel()
+    val viewModel: ThirdViewModel = viewModel(factory = viewModelFactory)
 
     val coinInfo = viewModel.coinInfo
 

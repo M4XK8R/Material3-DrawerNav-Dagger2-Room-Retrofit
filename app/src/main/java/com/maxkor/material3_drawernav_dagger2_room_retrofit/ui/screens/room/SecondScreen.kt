@@ -33,11 +33,13 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.maxkor.material3_drawernav_dagger2_room_retrofit.R
 import com.maxkor.material3_drawernav_dagger2_room_retrofit.data.room.MyEntity
+import com.maxkor.material3_drawernav_dagger2_room_retrofit.ui.MyViewModelFactory
 import kotlinx.coroutines.launch
 
 @Composable
-fun SecondScreen() {
-    val viewModel: SecondViewModel = viewModel()
+fun SecondScreen(viewModelFactory: MyViewModelFactory) {
+
+    val viewModel: SecondViewModel = viewModel(factory = viewModelFactory)
 
     val itemsState = viewModel
         .getAllItems()
